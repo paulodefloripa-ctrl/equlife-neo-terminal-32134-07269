@@ -1,0 +1,310 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-black text-white;
+    font-family: 'Inter', sans-serif;
+  }
+  
+  code, pre, .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Dark Theme Variables (AI Hub Cyan) */
+    --dark-bg: 0 0% 0%;
+    --dark-fg: 0 0% 100%;
+    --dark-primary: 187 100% 50%; /* Cyan #00F5FF */
+    --dark-primary-fg: 0 0% 0%;
+    --dark-secondary: 0 0% 70%;
+    --dark-muted: 0 0% 40%;
+    --dark-muted-fg: 0 0% 60%;
+    --dark-accent: 187 100% 50%; /* Cyan */
+    --dark-border: 0 0% 100% / 0.1;
+    --dark-input: 0 0% 100% / 0.1;
+    
+    /* Light Theme Variables */
+    --light-bg: 0 0% 100%;
+    --light-fg: 0 0% 0%;
+    --light-primary: 187 90% 45%; /* Cyan darker for light theme */
+    --light-primary-fg: 0 0% 100%;
+    --light-secondary: 220 13% 30%;
+    --light-muted: 220 13% 85%;
+    --light-muted-fg: 220 13% 45%;
+    --light-accent: 187 100% 50%; /* Cyan */
+    --light-border: 0 0% 0% / 0.1;
+    --light-input: 0 0% 0% / 0.1;
+    
+    /* Cyberpunk Theme Variables (Cyan Primary) */
+    --cyber-bg: 0 0% 0%;
+    --cyber-fg: 187 100% 50%; /* cyan */
+    --cyber-primary: 187 100% 50%; /* Cyan primary */
+    --cyber-primary-fg: 0 0% 0%;
+    --cyber-secondary: 300 100% 50%; /* magenta */
+    --cyber-muted: 187 50% 30%;
+    --cyber-muted-fg: 187 100% 60%;
+    --cyber-accent: 106 100% 54%; /* lime green */
+    --cyber-border: 187 100% 50% / 0.3;
+    --cyber-input: 187 100% 50% / 0.3;
+    
+    /* Default to Dark Theme */
+    --background: var(--dark-bg);
+    --foreground: var(--dark-fg);
+    --primary: var(--dark-primary);
+    --primary-foreground: var(--dark-primary-fg);
+    --secondary: var(--dark-secondary);
+    --secondary-foreground: var(--dark-primary-fg);
+    --muted: var(--dark-muted);
+    --muted-foreground: var(--dark-muted-fg);
+    --accent: var(--dark-accent);
+    --accent-foreground: var(--dark-primary-fg);
+    --border: var(--dark-border);
+    --input: var(--dark-input);
+    --ring: var(--dark-primary);
+    --card: 0 0% 5%;
+    --card-foreground: var(--dark-fg);
+    --popover: 0 0% 5%;
+    --popover-foreground: var(--dark-fg);
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --radius: 0.5rem;
+    
+    /* Typography */
+    --font-mono: 'JetBrains Mono', monospace;
+    --font-sans: 'Inter', sans-serif;
+  }
+
+  /* Dark Theme Class */
+  body.dark {
+    --background: var(--dark-bg);
+    --foreground: var(--dark-fg);
+    --primary: var(--dark-primary);
+    --primary-foreground: var(--dark-primary-fg);
+    --secondary: var(--dark-secondary);
+    --secondary-foreground: var(--dark-primary-fg);
+    --muted: var(--dark-muted);
+    --muted-foreground: var(--dark-muted-fg);
+    --accent: var(--dark-accent);
+    --accent-foreground: var(--dark-primary-fg);
+    --border: var(--dark-border);
+    --input: var(--dark-input);
+    --ring: var(--dark-primary);
+    --card: 0 0% 5%;
+    --card-foreground: var(--dark-fg);
+    --popover: 0 0% 5%;
+    --popover-foreground: var(--dark-fg);
+  }
+  
+  /* Light Theme Class */
+  body.light {
+    --background: var(--light-bg);
+    --foreground: var(--light-fg);
+    --primary: var(--light-primary);
+    --primary-foreground: var(--light-primary-fg);
+    --secondary: var(--light-secondary);
+    --secondary-foreground: var(--light-primary-fg);
+    --muted: var(--light-muted);
+    --muted-foreground: var(--light-muted-fg);
+    --accent: var(--light-accent);
+    --accent-foreground: var(--light-primary-fg);
+    --border: var(--light-border);
+    --input: var(--light-input);
+    --ring: var(--light-accent);
+    --card: 0 0% 98%;
+    --card-foreground: var(--light-fg);
+    --popover: 0 0% 98%;
+    --popover-foreground: var(--light-fg);
+  }
+  
+  /* Cyberpunk Theme Class */
+  body.cyberpunk {
+    --background: var(--cyber-bg);
+    --foreground: var(--cyber-fg);
+    --primary: var(--cyber-primary);
+    --primary-foreground: var(--cyber-primary-fg);
+    --secondary: var(--cyber-secondary);
+    --secondary-foreground: var(--cyber-primary-fg);
+    --muted: var(--cyber-muted);
+    --muted-foreground: var(--cyber-muted-fg);
+    --accent: var(--cyber-accent);
+    --accent-foreground: var(--cyber-primary-fg);
+    --border: var(--cyber-border);
+    --input: var(--cyber-input);
+    --ring: var(--cyber-primary);
+    --card: 270 100% 5%;
+    --card-foreground: var(--cyber-fg);
+    --popover: 270 100% 5%;
+    --popover-foreground: var(--cyber-fg);
+    
+    background: linear-gradient(135deg, #000 0%, #1a0033 50%, #001a33 100%);
+    background-size: 200% 200%;
+    animation: gradientShift 10s ease infinite;
+  }
+  
+  @keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground transition-colors duration-300;
+    font-family: var(--font-mono);
+  }
+  
+  body.light {
+    font-family: var(--font-sans);
+  }
+}
+
+@layer utilities {
+  /* Console Mode Effects */
+  .console-scanlines {
+    position: relative;
+  }
+  
+  .console-scanlines::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      transparent 50%,
+      rgba(0, 255, 102, 0.03) 50%
+    );
+    background-size: 100% 4px;
+    pointer-events: none;
+    z-index: 1;
+  }
+  
+  .console-scanlines::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      ellipse at center,
+      transparent 0%,
+      rgba(0, 17, 0, 0.3) 100%
+    );
+    pointer-events: none;
+    z-index: 2;
+  }
+  
+  /* Cursor Blink */
+  .cursor-blink {
+    animation: blink 0.7s step-end infinite;
+  }
+  
+  @keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+  }
+  
+  /* Glass Effect */
+  .glass-effect {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  /* Neon Glow (for Cyberpunk theme) */
+  body.cyberpunk .neon-glow {
+    text-shadow: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 30px currentColor;
+  }
+  
+  body.cyberpunk .neon-border {
+    box-shadow: 0 0 10px currentColor, 0 0 20px currentColor, inset 0 0 10px currentColor;
+  }
+  
+  /* Cyberpunk Scanlines */
+  body.cyberpunk .cyber-scanlines {
+    position: relative;
+  }
+  
+  body.cyberpunk .cyber-scanlines::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      transparent 50%,
+      rgba(0, 255, 255, 0.03) 50%
+    );
+    background-size: 100% 4px;
+    pointer-events: none;
+    z-index: 1;
+  }
+  
+  /* Progressive Typing */
+  .typing-cursor::after {
+    content: '▊';
+    animation: blink 0.7s step-end infinite;
+    margin-left: 2px;
+  }
+  
+  /* Smooth Transitions */
+  .transition-smooth {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .transition-fast {
+    transition: all 0.15s ease-out;
+  }
+
+  /* Cyan Glow Effects */
+  .cyan-glow {
+    box-shadow: 0 0 10px hsl(var(--primary)), 0 0 20px hsl(var(--primary) / 0.4), 0 0 30px hsl(var(--primary) / 0.2);
+  }
+
+  .cyan-text-glow {
+    text-shadow: 0 0 10px hsl(var(--primary)), 0 0 20px hsl(var(--primary) / 0.8);
+    color: hsl(var(--primary));
+  }
+
+  /* Animated Cyan Border */
+  .cyan-border-animated {
+    position: relative;
+    border: 2px solid transparent;
+    background: linear-gradient(hsl(var(--background)), hsl(var(--background))) padding-box,
+                linear-gradient(90deg, hsl(var(--primary)), hsl(187 100% 60%), hsl(var(--primary))) border-box;
+    background-size: 200% 200%;
+    animation: borderShift 3s ease infinite;
+  }
+
+  @keyframes borderShift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  /* Pulsing Effect */
+  .pulse-cyan {
+    animation: pulseCyan 2s ease-in-out infinite;
+  }
+
+  @keyframes pulseCyan {
+    0%, 100% { 
+      opacity: 1; 
+      box-shadow: 0 0 10px hsl(var(--primary));
+    }
+    50% { 
+      opacity: 0.8; 
+      box-shadow: 0 0 20px hsl(var(--primary)), 0 0 30px hsl(var(--primary) / 0.5);
+    }
+  }
+}

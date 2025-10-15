@@ -1,0 +1,54 @@
+import { useEffect, useState } from 'react';
+import { PomodoroState, GPSData } from '@/lib/types';
+import { Clock, MapPin, Timer } from 'lucide-react';
+
+type StatusBarProps = {
+  pomodoro: PomodoroState;
+  gps: GPSData;
+};
+
+const StatusBar = ({ pomodoro, gps }: StatusBarProps) => {
+  const [time, setTime] = useState(new Date());
+
+  useEffect(() => {
+    const interval = setInterval(() => setTime(new Date()), 1000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const formatTime = (date: Date) => {
+    return date.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+  };
+
+  const formatPomodoro = (seconds: number) => {
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${mins}:${secs.toString().padStart(2, '0')}`;
+  };
+
+  return (
+    <div className="flex items-center gap-6 text-sm font-mono text-muted-foreground">
+      <div className="flex items-center gap-2">
+        <Clock size={14} />
+        <span>{formatTime(time)}</span>
+      </div>
+
+      {pomodoro.isRunning && (
+        <div className="flex items-center gap-2">
+          <Timer size={14} className="text-accent" />
+          <span className="text-accent">
+            {pomodoro.mode === 'focus' ? 'FOCUS' : 'BREAK'}: {formatPomodoro(pomodoro.remainingSeconds)}
+          </span>
+        </div>
+      )}
+
+      {gps.authorized && (
+        <div className="flex items-center gap-2">
+          <MapPin size={14} />
+          <span>{gps.city || `${gps.latitude?.toFixed(2)}, ${gps.longitude?.toFixed(2)}`}</span>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default StatusBar;
