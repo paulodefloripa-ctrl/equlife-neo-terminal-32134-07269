@@ -1,6 +1,8 @@
 import Layout from '@/components/Layout';
 import ConsoleTerminal from '@/components/ConsoleTerminal';
 import StatusBar from '@/components/StatusBar';
+import QuickActionButtons from '@/components/QuickActionButtons';
+import EnhancedInput from '@/components/EnhancedInput';
 import { usePomodoro } from '@/hooks/usePomodoro';
 import { useGPS } from '@/hooks/useGPS';
 import { ConsoleCommand } from '@/lib/types';
@@ -91,15 +93,34 @@ const Console = () => {
     }
   };
 
+  const handleEnhancedInput = (text: string, file?: File) => {
+    if (file) {
+      addMessage('system', `Archivo recibido: ${file.name}`);
+    }
+    if (text) {
+      const [cmd, ...argsParts] = text.trim().split(' ');
+      const args = argsParts.join(' ');
+      handleExecute(cmd, args);
+    }
+  };
+
   return (
     <Layout>
       <div className="max-w-6xl mx-auto p-4 flex flex-col h-[calc(100vh-8rem)]">
+        <div className="mb-2">
+          <QuickActionButtons />
+        </div>
+        
         <div className="mb-4">
           <StatusBar pomodoro={pomodoro} gps={gps} />
         </div>
         
-        <div className="flex-1 rounded-2xl border border-border overflow-hidden shadow-2xl bg-card">
+        <div className="flex-1 rounded-2xl border border-border overflow-hidden shadow-2xl bg-card flex flex-col">
           <ConsoleTerminal commands={commands} onExecute={handleExecute} />
+        </div>
+
+        <div className="mt-4">
+          <EnhancedInput onSubmit={handleEnhancedInput} />
         </div>
       </div>
     </Layout>

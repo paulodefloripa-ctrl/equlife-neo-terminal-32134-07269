@@ -15,8 +15,8 @@ type ConsoleTerminalProps = {
 
 const ConsoleTerminal = ({ commands, onExecute }: ConsoleTerminalProps) => {
   const [messages, setMessages] = useState<Message[]>([
-    { id: '1', type: 'system', content: 'EquityLabs Nano Console v1.0' },
-    { id: '2', type: 'system', content: 'Type "help" for available commands' },
+    { id: '1', type: 'system', content: 'Commander Workstation' },
+    { id: '2', type: 'system', content: '' },
   ]);
   const [input, setInput] = useState('');
   const [history, setHistory] = useState<string[]>([]);
@@ -120,7 +120,7 @@ const ConsoleTerminal = ({ commands, onExecute }: ConsoleTerminalProps) => {
 
         <form onSubmit={handleSubmit} className="p-4 border-t border-border">
           <div className="flex items-center gap-2 font-mono">
-            <span className="text-primary">{'>'}</span>
+            <span className="text-green-500">{'>'}</span>
             <input
               ref={inputRef}
               type="text"
@@ -128,9 +128,10 @@ const ConsoleTerminal = ({ commands, onExecute }: ConsoleTerminalProps) => {
               onChange={e => setInput(e.target.value)}
               onKeyDown={handleKeyDown}
               className="flex-1 bg-transparent text-foreground outline-none"
-              placeholder="Type command..."
+              placeholder="¿Cómo puedo ayudarte hoy?"
               autoFocus
             />
+            <span className="text-green-500 cursor-blink">▊</span>
           </div>
         </form>
       </div>

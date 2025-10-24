@@ -4,14 +4,14 @@ import { Theme } from '@/lib/types';
 const THEME_KEY = 'eql-theme';
 
 export const useTheme = () => {
-  const [theme, setTheme] = useState<Theme>('dark');
+  const [theme, setTheme] = useState<Theme>('light');
 
   useEffect(() => {
     const saved = localStorage.getItem(THEME_KEY) as Theme;
-    if (saved && ['dark', 'light', 'cyberpunk'].includes(saved)) {
+    if (saved && ['light', 'cyberpunk'].includes(saved)) {
       applyTheme(saved);
     } else {
-      applyTheme('dark');
+      applyTheme('light');
     }
   }, []);
 
