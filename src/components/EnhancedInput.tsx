@@ -2,18 +2,22 @@ import { useState, useRef, ChangeEvent } from 'react';
 import { Send, Mic, MicOff, Upload, Volume2, VolumeX } from 'lucide-react';
 import { Button } from './ui/button';
 import { useVoice } from '@/hooks/useVoice';
-import { useToast } from './ui/use-toast';
+import { useToast } from '@/hooks/use-toast';
+import { useLanguage } from '@/hooks/useLanguage';
+import { getTranslation } from '@/lib/i18n';
 
 interface EnhancedInputProps {
   onSubmit: (text: string, file?: File) => void;
   placeholder?: string;
 }
 
-const EnhancedInput = ({ onSubmit, placeholder = '¿Cómo puedo ayudarte hoy?' }: EnhancedInputProps) => {
+const EnhancedInput = ({ onSubmit, placeholder }: EnhancedInputProps) => {
   const [input, setInput] = useState('');
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const { toast } = useToast();
+  const { language } = useLanguage();
+  const t = getTranslation(language);
   
   const { 
     speak, 
@@ -43,8 +47,8 @@ const EnhancedInput = ({ onSubmit, placeholder = '¿Cómo puedo ayudarte hoy?' }
   const handleMicToggle = () => {
     if (!hasRecognitionSupport) {
       toast({
-        title: 'No disponible',
-        description: 'El reconocimiento de voz no está disponible en tu navegador.',
+        title: 'Not supported',
+        description: t.voice.notSupported,
         variant: 'destructive',
       });
       return;
@@ -60,8 +64,8 @@ const EnhancedInput = ({ onSubmit, placeholder = '¿Cómo puedo ayudarte hoy?' }
   const handleVoiceToggle = () => {
     if (!hasVoiceSupport) {
       toast({
-        title: 'No disponible',
-        description: 'La síntesis de voz no está disponible en tu navegador.',
+        title: 'Not supported',
+        description: t.voice.speechNotSupported,
         variant: 'destructive',
       });
       return;
@@ -79,7 +83,7 @@ const EnhancedInput = ({ onSubmit, placeholder = '¿Cómo puedo ayudarte hoy?' }
     if (file) {
       setSelectedFile(file);
       toast({
-        title: 'Archivo seleccionado',
+        title: 'File selected',
         description: file.name,
       });
     }
@@ -98,7 +102,7 @@ const EnhancedInput = ({ onSubmit, placeholder = '¿Cómo puedo ayudarte hoy?' }
           type="text"
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          placeholder={placeholder}
+          placeholder={placeholder || t.input.placeholder}
           className="w-full px-4 py-2 pr-32 bg-card border border-border rounded-lg text-foreground outline-none focus:border-primary font-mono"
         />
         

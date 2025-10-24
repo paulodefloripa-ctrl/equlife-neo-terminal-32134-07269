@@ -1,38 +1,19 @@
-import { useState, useEffect } from 'react';
 import Layout from '@/components/Layout';
-import { useSettings } from '@/hooks/useSettings';
-import { Save, AlertCircle } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { useLanguage } from '@/hooks/useLanguage';
+import { getTranslation } from '@/lib/i18n';
 
 const Settings = () => {
-  const { settings, saveSettings } = useSettings();
-  const [form, setForm] = useState(settings);
-  
-  useEffect(() => {
-    setForm(settings);
-  }, [settings]);
-
-  const handleSave = () => {
-    saveSettings(form);
-    alert('Settings saved!');
-  };
-
-  const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || '';
-  const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY || '';
-  const useMock = import.meta.env.VITE_USE_MOCK === 'true';
+  const { language } = useLanguage();
+  const t = getTranslation(language);
 
   return (
     <Layout>
-      <div className="max-w-3xl mx-auto p-4">
-        <h2 className="text-2xl font-bold font-mono mb-6 text-foreground">Settings</h2>
-
+      <div className="max-w-4xl mx-auto px-4 py-8">
+        <h1 className="text-3xl font-bold font-mono mb-8">{t.navigation.settings}</h1>
+        
         <div className="space-y-6">
-          <button
-            onClick={handleSave}
-            className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-primary/20 hover:bg-primary/30 border border-border rounded-lg font-mono transition-colors"
-          >
-            <Save size={16} />
-            Save Settings
-          </button>
+          <Button>{t.settings.save}</Button>
         </div>
       </div>
     </Layout>

@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { PomodoroState, GPSData } from '@/lib/types';
-import { Clock, MapPin, Timer } from 'lucide-react';
+import { Clock, MapPin, Timer, Calendar } from 'lucide-react';
+import { useLanguage } from '@/hooks/useLanguage';
+import { getTranslation } from '@/lib/i18n';
 
 type StatusBarProps = {
   pomodoro: PomodoroState;
@@ -9,6 +11,8 @@ type StatusBarProps = {
 
 const StatusBar = ({ pomodoro, gps }: StatusBarProps) => {
   const [time, setTime] = useState(new Date());
+  const { language } = useLanguage();
+  const t = getTranslation(language);
 
   useEffect(() => {
     const interval = setInterval(() => setTime(new Date()), 1000);
@@ -16,7 +20,19 @@ const StatusBar = ({ pomodoro, gps }: StatusBarProps) => {
   }, []);
 
   const formatTime = (date: Date) => {
-    return date.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+    return date.toLocaleTimeString(language === 'en' ? 'en-US' : language === 'fr' ? 'fr-FR' : language === 'it' ? 'it-IT' : language === 'pt' ? 'pt-PT' : 'es-ES', { 
+      hour: '2-digit', 
+      minute: '2-digit', 
+      second: '2-digit' 
+    });
+  };
+
+  const formatDate = (date: Date) => {
+    return date.toLocaleDateString(language === 'en' ? 'en-US' : language === 'fr' ? 'fr-FR' : language === 'it' ? 'it-IT' : language === 'pt' ? 'pt-PT' : 'es-ES', { 
+      year: 'numeric',
+      month: 'short', 
+      day: 'numeric' 
+    });
   };
 
   const formatPomodoro = (seconds: number) => {
@@ -32,19 +48,24 @@ const StatusBar = ({ pomodoro, gps }: StatusBarProps) => {
         <span>{formatTime(time)}</span>
       </div>
 
-      {pomodoro.isRunning && (
-        <div className="flex items-center gap-2">
-          <Timer size={14} className="text-accent" />
-          <span className="text-accent">
-            {pomodoro.mode === 'focus' ? 'FOCUS' : 'BREAK'}: {formatPomodoro(pomodoro.remainingSeconds)}
-          </span>
-        </div>
-      )}
+      <div className="flex items-center gap-2">
+        <Calendar size={14} />
+        <span>{formatDate(time)}</span>
+      </div>
 
       {gps.authorized && (
         <div className="flex items-center gap-2">
           <MapPin size={14} />
           <span>{gps.city || `${gps.latitude?.toFixed(2)}, ${gps.longitude?.toFixed(2)}`}</span>
+        </div>
+      )}
+
+      {pomodoro.isRunning && (
+        <div className="flex items-center gap-2">
+          <Timer size={14} className="text-accent" />
+          <span className="text-accent">
+            {pomodoro.mode === 'focus' ? t.status.focus : t.status.break}: {formatPomodoro(pomodoro.remainingSeconds)}
+          </span>
         </div>
       )}
     </div>

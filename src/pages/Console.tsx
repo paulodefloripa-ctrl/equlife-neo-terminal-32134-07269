@@ -7,10 +7,14 @@ import { usePomodoro } from '@/hooks/usePomodoro';
 import { useGPS } from '@/hooks/useGPS';
 import { ConsoleCommand } from '@/lib/types';
 import { listProjects } from '@/lib/projectsRepo';
+import { useLanguage } from '@/hooks/useLanguage';
+import { getTranslation } from '@/lib/i18n';
 
 const Console = () => {
   const { state: pomodoro, startFocus, startBreak, stop } = usePomodoro();
   const { gps, requestLocation } = useGPS();
+  const { language } = useLanguage();
+  const t = getTranslation(language);
 
   const addMessage = (type: 'agent' | 'system', content: string) => {
     if ((window as any).__addConsoleMessage) {
@@ -21,7 +25,7 @@ const Console = () => {
   const commands: ConsoleCommand[] = [
     {
       command: 'help',
-      description: 'Show available commands',
+      description: t.commands.help,
       handler: () => {
         const helpText = commands.map(c => `${c.command} - ${c.description}`).join('\n');
         return helpText;
@@ -29,14 +33,14 @@ const Console = () => {
     },
     {
       command: 'time',
-      description: 'Show current time',
+      description: t.commands.time,
       handler: () => {
-        return new Date().toLocaleString('es-ES');
+        return new Date().toLocaleString(language === 'en' ? 'en-US' : language === 'fr' ? 'fr-FR' : language === 'it' ? 'it-IT' : language === 'pt' ? 'pt-PT' : 'es-ES');
       },
     },
     {
       command: 'gps',
-      description: 'Get GPS location',
+      description: t.commands.gps,
       handler: () => {
         requestLocation();
         return 'Requesting GPS location...';
@@ -44,7 +48,7 @@ const Console = () => {
     },
     {
       command: 'focus',
-      description: 'Start focus timer (e.g., focus 25)',
+      description: t.commands.focus,
       handler: (args) => {
         const minutes = parseInt(args || '25');
         startFocus(minutes);
@@ -53,7 +57,7 @@ const Console = () => {
     },
     {
       command: 'break',
-      description: 'Start break timer (e.g., break 5)',
+      description: t.commands.break,
       handler: (args) => {
         const minutes = parseInt(args || '5');
         startBreak(minutes);
@@ -62,7 +66,7 @@ const Console = () => {
     },
     {
       command: 'stop',
-      description: 'Stop Pomodoro timer',
+      description: t.commands.stop,
       handler: () => {
         stop();
         return 'Timer stopped';
@@ -70,7 +74,7 @@ const Console = () => {
     },
     {
       command: 'projects',
-      description: 'List all projects',
+      description: t.commands.projects,
       handler: async () => {
         try {
           const projects = await listProjects();
@@ -95,7 +99,7 @@ const Console = () => {
 
   const handleEnhancedInput = (text: string, file?: File) => {
     if (file) {
-      addMessage('system', `Archivo recibido: ${file.name}`);
+      addMessage('system', `File received: ${file.name}`);
     }
     if (text) {
       const [cmd, ...argsParts] = text.trim().split(' ');

@@ -1,17 +1,19 @@
 import { ReactNode } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import ThemeSwitcher from './ThemeSwitcher';
-import { useTheme } from '@/hooks/useTheme';
+import LanguageSwitcher from './LanguageSwitcher';
+import { useLanguage } from '@/hooks/useLanguage';
+import { getTranslation } from '@/lib/i18n';
 
 const Layout = ({ children }: { children: ReactNode }) => {
   const location = useLocation();
-  const { theme, changeTheme } = useTheme();
+  const { language, changeLanguage } = useLanguage();
+  const t = getTranslation(language);
   
   const tabs = [
-    { path: '/console', label: 'Console' },
-    { path: '/projects', label: 'Projects' },
-    { path: '/agents', label: 'Agents' },
-    { path: '/settings', label: 'Settings' },
+    { path: '/console', label: t.navigation.console },
+    { path: '/projects', label: t.navigation.projects },
+    { path: '/agents', label: t.navigation.agents },
+    { path: '/settings', label: t.navigation.settings },
   ];
 
   return (
@@ -39,7 +41,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
               ))}
             </div>
             
-            <ThemeSwitcher theme={theme} onThemeChange={changeTheme} />
+            <LanguageSwitcher language={language} onLanguageChange={changeLanguage} />
           </nav>
         </div>
       </header>
@@ -50,7 +52,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
 
       <footer className="border-t border-border py-2">
         <div className="max-w-6xl mx-auto px-4 text-center text-xs text-muted-foreground font-mono">
-          EquityLabs Nano Console v1.0
+          {t.footer}
         </div>
       </footer>
     </div>

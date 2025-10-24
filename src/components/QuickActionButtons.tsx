@@ -1,6 +1,7 @@
-import { useState } from 'react';
-import { FileText, Mail, FileEdit, Timer, Music, Film, MapPin, Calendar, Clock } from 'lucide-react';
 import { Button } from './ui/button';
+import { FolderKanban, Mail, FileText, Timer, Music, Film } from 'lucide-react';
+import { useLanguage } from '@/hooks/useLanguage';
+import { getTranslation } from '@/lib/i18n';
 
 type ActionButton = {
   id: string;
@@ -9,78 +10,31 @@ type ActionButton = {
 };
 
 const QuickActionButtons = () => {
-  const [currentTime, setCurrentTime] = useState(new Date());
-  const [location, setLocation] = useState<{ lat: number; lng: number } | null>(null);
-
-  const getLocation = () => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          setLocation({
-            lat: position.coords.latitude,
-            lng: position.coords.longitude,
-          });
-        },
-        (error) => {
-          console.error('Error getting location:', error);
-        }
-      );
-    }
-  };
+  const { language } = useLanguage();
+  const t = getTranslation(language);
 
   const actions: ActionButton[] = [
-    { id: 'projects', icon: <FileText className="w-3 h-3" />, label: 'Proyectos' },
-    { id: 'gmail', icon: <Mail className="w-3 h-3" />, label: 'Gmail' },
-    { id: 'pdf', icon: <FileEdit className="w-3 h-3" />, label: 'PDF' },
-    { id: 'pomodoro', icon: <Timer className="w-3 h-3" />, label: 'Pomodoro' },
-    { id: 'music', icon: <Music className="w-3 h-3" />, label: 'Música' },
-    { id: 'media', icon: <Film className="w-3 h-3" />, label: 'Media' },
+    { id: 'projects', icon: <FolderKanban size={14} />, label: t.actions.projects },
+    { id: 'gmail', icon: <Mail size={14} />, label: t.actions.gmail },
+    { id: 'pdf', icon: <FileText size={14} />, label: t.actions.pdf },
+    { id: 'pomodoro', icon: <Timer size={14} />, label: t.actions.pomodoro },
+    { id: 'music', icon: <Music size={14} />, label: t.actions.music },
+    { id: 'media', icon: <Film size={14} />, label: t.actions.media },
   ];
 
   return (
-    <div className="flex flex-wrap gap-1 items-center justify-center mb-2">
+    <div className="flex items-center gap-2 flex-wrap">
       {actions.map((action) => (
         <Button
           key={action.id}
           variant="ghost"
           size="sm"
-          className="h-6 px-2 text-xs opacity-20 hover:opacity-40 transition-opacity bg-foreground/20"
-          onClick={() => console.log(`Action: ${action.id}`)}
+          className="h-7 px-2 text-xs opacity-40 hover:opacity-60 transition-opacity bg-background/20"
         >
           {action.icon}
-          <span className="ml-1">{action.label}</span>
+          <span className="ml-1.5">{action.label}</span>
         </Button>
       ))}
-      
-      <Button
-        variant="ghost"
-        size="sm"
-        className="h-6 px-2 text-xs opacity-20 hover:opacity-40 transition-opacity bg-foreground/20"
-        onClick={() => setCurrentTime(new Date())}
-      >
-        <Clock className="w-3 h-3 mr-1" />
-        {currentTime.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' })}
-      </Button>
-
-      <Button
-        variant="ghost"
-        size="sm"
-        className="h-6 px-2 text-xs opacity-20 hover:opacity-40 transition-opacity bg-foreground/20"
-        onClick={() => setCurrentTime(new Date())}
-      >
-        <Calendar className="w-3 h-3 mr-1" />
-        {currentTime.toLocaleDateString('es-ES')}
-      </Button>
-
-      <Button
-        variant="ghost"
-        size="sm"
-        className="h-6 px-2 text-xs opacity-20 hover:opacity-40 transition-opacity bg-foreground/20"
-        onClick={getLocation}
-      >
-        <MapPin className="w-3 h-3 mr-1" />
-        {location ? `${location.lat.toFixed(2)}, ${location.lng.toFixed(2)}` : 'Ubicación'}
-      </Button>
     </div>
   );
 };

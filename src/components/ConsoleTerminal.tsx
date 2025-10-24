@@ -1,6 +1,8 @@
 import { useState, useRef, useEffect } from 'react';
 import { ConsoleCommand } from '@/lib/types';
 import { useSettings } from '@/hooks/useSettings';
+import { useLanguage } from '@/hooks/useLanguage';
+import { getTranslation } from '@/lib/i18n';
 
 type Message = {
   id: string;
@@ -14,8 +16,12 @@ type ConsoleTerminalProps = {
 };
 
 const ConsoleTerminal = ({ commands, onExecute }: ConsoleTerminalProps) => {
+  const { settings } = useSettings();
+  const { language } = useLanguage();
+  const t = getTranslation(language);
+  
   const [messages, setMessages] = useState<Message[]>([
-    { id: '1', type: 'system', content: 'Commander Workstation' },
+    { id: '1', type: 'system', content: t.console.workstation },
     { id: '2', type: 'system', content: '' },
   ]);
   const [input, setInput] = useState('');
@@ -23,7 +29,6 @@ const ConsoleTerminal = ({ commands, onExecute }: ConsoleTerminalProps) => {
   const [historyIndex, setHistoryIndex] = useState(-1);
   const scrollRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
-  const { settings } = useSettings();
 
   useEffect(() => {
     if (scrollRef.current) {
@@ -128,7 +133,7 @@ const ConsoleTerminal = ({ commands, onExecute }: ConsoleTerminalProps) => {
               onChange={e => setInput(e.target.value)}
               onKeyDown={handleKeyDown}
               className="flex-1 bg-transparent text-foreground outline-none"
-              placeholder="¿Cómo puedo ayudarte hoy?"
+              placeholder={t.console.welcome}
               autoFocus
             />
             <span className="text-green-500 cursor-blink">▊</span>
