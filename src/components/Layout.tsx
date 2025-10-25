@@ -20,8 +20,8 @@ const Layout = ({ children }: { children: ReactNode }) => {
     <div className="min-h-screen flex flex-col bg-background text-foreground">
       <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-sm">
         <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
-          <Link to="/" className="text-xl font-bold font-mono text-foreground hover:text-primary transition-colors">
-            EquityLabs
+          <Link to="/" className="text-xl font-bold font-sans text-foreground hover:text-primary transition-colors">
+            EQL
           </Link>
           
           <nav className="flex items-center gap-4">

@@ -20,15 +20,8 @@ const WelcomeScreen = ({ onActivate }: WelcomeScreenProps) => {
         transition={{ delay: 0.2, duration: 0.5 }}
         className="text-center space-y-8"
       >
-        <div className="flex items-center justify-center gap-3 mb-6">
-          <Zap className="w-16 h-16 text-primary cyan-glow" />
-          <h1 className="text-6xl font-bold text-primary cyan-text-glow">
-            EquityLabs
-          </h1>
-        </div>
-        
-        <p className="text-xl text-secondary max-w-2xl mx-auto px-4">
-          Bienvenido al núcleo comunicacional del futuro
+        <p className="text-3xl text-foreground max-w-2xl mx-auto px-4">
+          EquityLabs Workstation
         </p>
         
         <motion.div

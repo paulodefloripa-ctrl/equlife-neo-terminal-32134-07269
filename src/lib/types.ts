@@ -1,5 +1,5 @@
 export type UIMode = 'console' | 'glass';
-export type Theme = 'dark' | 'light' | 'cyberpunk';
+export type Theme = 'normal' | 'cyberpunk';
 export type Language = 'en' | 'es' | 'fr' | 'it' | 'pt';
 
 export type Project = {

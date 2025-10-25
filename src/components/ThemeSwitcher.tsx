@@ -8,8 +8,7 @@ type ThemeSwitcherProps = {
 
 const ThemeSwitcher = ({ theme, onThemeChange }: ThemeSwitcherProps) => {
   const themes: { id: Theme; label: string; icon: React.ReactNode }[] = [
-    { id: 'dark', label: 'Dark', icon: <Moon size={14} /> },
-    { id: 'light', label: 'Light', icon: <Sun size={14} /> },
+    { id: 'normal', label: 'Normal', icon: <Sun size={14} /> },
     { id: 'cyberpunk', label: 'Cyber', icon: <Zap size={14} /> },
   ];
 

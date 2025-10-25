@@ -4,7 +4,7 @@ import { SettingsData } from '@/lib/types';
 const SETTINGS_KEY = 'eql-settings';
 
 const defaultSettings: SettingsData = {
-  theme: 'dark',
+  theme: 'normal',
   backgroundImageUrl: '',
   stripeLinks: {
     starter: '',
