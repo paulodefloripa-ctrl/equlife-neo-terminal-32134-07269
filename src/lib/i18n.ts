@@ -57,6 +57,49 @@ export const translations = {
     footer: "EquityLabs Nano Console v1.0",
     hero: "At EquityLabs we simplify complexity so your future can be extraordinary.",
     start: "Start",
+    onboarding: {
+      welcome: "🧠 Welcome to EquityLabs\nFill out this short form to activate your personalized AI experience.",
+      objetivo: "What is your main goal with EquityLabs?",
+      objetivo_opciones: [
+        "Optimize my personal productivity",
+        "Automate my business processes",
+        "Learn to use Artificial Intelligence",
+        "Start a project from scratch",
+        "Other (specify)"
+      ],
+      situacion: "What is your current situation?",
+      situacion_opciones: [
+        "Student",
+        "Entrepreneur",
+        "Independent professional",
+        "I have a team or company",
+        "Looking for opportunities"
+      ],
+      frecuencia: "How often do you use digital tools to stay organized?",
+      frecuencia_opciones: [
+        "Every day",
+        "A few times a week",
+        "Almost never",
+        "Never tried"
+      ],
+      experiencia: "What is your level of experience with Artificial Intelligence?",
+      experiencia_opciones: [
+        "Expert",
+        "Intermediate",
+        "Beginner",
+        "Never used any AI tool"
+      ],
+      areas_interes: "Which areas are you interested in exploring with AI?",
+      areas_interes_opciones: [
+        "Automation of repetitive tasks",
+        "Marketing and social media",
+        "Personal or business finances",
+        "Writing / creative content",
+        "Education and learning",
+        "Other (specify)"
+      ],
+      boton_activar: "Activate my personalized experience"
+    }
   },
   es: {
     console: {
@@ -114,6 +157,49 @@ export const translations = {
     footer: "EquityLabs Nano Console v1.0",
     hero: "En EquityLabs simplificamos lo complejo para que tu futuro sea extraordinario.",
     start: "Comenzar",
+    onboarding: {
+      welcome: "🧠 Bienvenido a EquityLabs\nCompletá este breve formulario para activar tu experiencia personalizada con IA.",
+      objetivo: "¿Cuál es tu principal objetivo con EquityLabs?",
+      objetivo_opciones: [
+        "Optimizar mi productividad personal",
+        "Automatizar procesos de mi negocio",
+        "Aprender a usar Inteligencia Artificial",
+        "Crear un proyecto desde cero",
+        "Otro (especificar)"
+      ],
+      situacion: "¿Cuál es tu situación actual?",
+      situacion_opciones: [
+        "Estudiante",
+        "Emprendedor/a",
+        "Profesional independiente",
+        "Tengo un equipo o empresa",
+        "En búsqueda de oportunidades"
+      ],
+      frecuencia: "¿Con qué frecuencia usás herramientas digitales para organizarte?",
+      frecuencia_opciones: [
+        "Todos los días",
+        "Algunas veces por semana",
+        "Casi nunca",
+        "Nunca probé"
+      ],
+      experiencia: "¿Qué nivel de experiencia tenés con Inteligencia Artificial?",
+      experiencia_opciones: [
+        "Experto",
+        "Intermedio",
+        "Principiante",
+        "Nunca usé ninguna herramienta de IA"
+      ],
+      areas_interes: "¿Qué áreas te interesan explorar con IA?",
+      areas_interes_opciones: [
+        "Automatización de tareas repetitivas",
+        "Marketing y redes sociales",
+        "Finanzas personales o del negocio",
+        "Escritura / contenido creativo",
+        "Educación y aprendizaje",
+        "Otro (especificar)"
+      ],
+      boton_activar: "Activar mi experiencia personalizada"
+    }
   },
   fr: {
     console: {
@@ -171,6 +257,49 @@ export const translations = {
     footer: "EquityLabs Nano Console v1.0",
     hero: "Chez EquityLabs, nous simplifions la complexité pour rendre votre avenir extraordinaire.",
     start: "Commencer",
+    onboarding: {
+      welcome: "🧠 Bienvenue chez EquityLabs\nRemplissez ce court formulaire pour activer votre expérience personnalisée avec l'IA.",
+      objetivo: "Quel est votre objectif principal avec EquityLabs?",
+      objetivo_opciones: [
+        "Optimiser ma productivité personnelle",
+        "Automatiser les processus de mon entreprise",
+        "Apprendre à utiliser l'Intelligence Artificielle",
+        "Créer un projet à partir de zéro",
+        "Autre (préciser)"
+      ],
+      situacion: "Quelle est votre situation actuelle?",
+      situacion_opciones: [
+        "Étudiant(e)",
+        "Entrepreneur(se)",
+        "Professionnel(le) indépendant(e)",
+        "J'ai une équipe ou une entreprise",
+        "À la recherche d'opportunités"
+      ],
+      frecuencia: "À quelle fréquence utilisez-vous des outils numériques pour vous organiser?",
+      frecuencia_opciones: [
+        "Tous les jours",
+        "Quelques fois par semaine",
+        "Presque jamais",
+        "Jamais essayé"
+      ],
+      experiencia: "Quel est votre niveau d'expérience avec l'Intelligence Artificielle?",
+      experiencia_opciones: [
+        "Expert",
+        "Intermédiaire",
+        "Débutant",
+        "Jamais utilisé d'outil d'IA"
+      ],
+      areas_interes: "Quels domaines vous intéressent pour explorer avec l'IA?",
+      areas_interes_opciones: [
+        "Automatisation des tâches répétitives",
+        "Marketing et réseaux sociaux",
+        "Finances personnelles ou d'entreprise",
+        "Écriture / contenu créatif",
+        "Éducation et apprentissage",
+        "Autre (préciser)"
+      ],
+      boton_activar: "Activer mon expérience personnalisée"
+    }
   },
   it: {
     console: {
@@ -228,6 +357,49 @@ export const translations = {
     footer: "EquityLabs Nano Console v1.0",
     hero: "In EquityLabs semplifichiamo il complesso per rendere straordinario il tuo futuro.",
     start: "Inizia",
+    onboarding: {
+      welcome: "🧠 Benvenuto in EquityLabs\nCompila questo breve modulo per attivare la tua esperienza personalizzata con l'IA.",
+      objetivo: "Qual è il tuo obiettivo principale con EquityLabs?",
+      objetivo_opciones: [
+        "Ottimizzare la mia produttività personale",
+        "Automatizzare i processi della mia attività",
+        "Imparare a usare l'Intelligenza Artificiale",
+        "Creare un progetto da zero",
+        "Altro (specificare)"
+      ],
+      situacion: "Qual è la tua situazione attuale?",
+      situacion_opciones: [
+        "Studente",
+        "Imprenditore/imprenditrice",
+        "Professionista indipendente",
+        "Ho un team o un'azienda",
+        "Alla ricerca di opportunità"
+      ],
+      frecuencia: "Con quale frequenza utilizzi strumenti digitali per organizzarti?",
+      frecuencia_opciones: [
+        "Ogni giorno",
+        "Qualche volta a settimana",
+        "Quasi mai",
+        "Mai provato"
+      ],
+      experiencia: "Qual è il tuo livello di esperienza con l'Intelligenza Artificiale?",
+      experiencia_opciones: [
+        "Esperto",
+        "Intermedio",
+        "Principiante",
+        "Mai usato nessuno strumento di IA"
+      ],
+      areas_interes: "Quali aree ti interessano esplorare con l'IA?",
+      areas_interes_opciones: [
+        "Automazione di compiti ripetitivi",
+        "Marketing e social media",
+        "Finanze personali o aziendali",
+        "Scrittura / contenuti creativi",
+        "Educazione e apprendimento",
+        "Altro (specificare)"
+      ],
+      boton_activar: "Attiva la mia esperienza personalizzata"
+    }
   },
   pt: {
     console: {
@@ -285,6 +457,49 @@ export const translations = {
     footer: "EquityLabs Nano Console v1.0",
     hero: "Na EquityLabs simplificamos o complexo para que seu futuro seja extraordinário.",
     start: "Começar",
+    onboarding: {
+      welcome: "🧠 Bem-vindo ao EquityLabs\nPreencha este breve formulário para ativar sua experiência personalizada com IA.",
+      objetivo: "Qual é seu principal objetivo com EquityLabs?",
+      objetivo_opciones: [
+        "Otimizar minha produtividade pessoal",
+        "Automatizar processos do meu negócio",
+        "Aprender a usar Inteligência Artificial",
+        "Criar um projeto do zero",
+        "Outro (especificar)"
+      ],
+      situacion: "Qual é sua situação atual?",
+      situacion_opciones: [
+        "Estudante",
+        "Empreendedor(a)",
+        "Profissional independente",
+        "Tenho uma equipe ou empresa",
+        "Em busca de oportunidades"
+      ],
+      frecuencia: "Com que frequência você usa ferramentas digitais para se organizar?",
+      frecuencia_opciones: [
+        "Todos os dias",
+        "Algumas vezes por semana",
+        "Quase nunca",
+        "Nunca experimentei"
+      ],
+      experiencia: "Qual é seu nível de experiência com Inteligência Artificial?",
+      experiencia_opciones: [
+        "Especialista",
+        "Intermediário",
+        "Iniciante",
+        "Nunca usei nenhuma ferramenta de IA"
+      ],
+      areas_interes: "Quais áreas você tem interesse em explorar com IA?",
+      areas_interes_opciones: [
+        "Automação de tarefas repetitivas",
+        "Marketing e redes sociais",
+        "Finanças pessoais ou empresariais",
+        "Escrita / conteúdo criativo",
+        "Educação e aprendizagem",
+        "Outro (especificar)"
+      ],
+      boton_activar: "Ativar minha experiência personalizada"
+    }
   },
   de: {
     console: {
@@ -342,6 +557,49 @@ export const translations = {
     footer: "EquityLabs Nano Console v1.0",
     hero: "Bei EquityLabs vereinfachen wir das Komplizierte, damit Ihre Zukunft außergewöhnlich wird.",
     start: "Starten",
+    onboarding: {
+      welcome: "🧠 Willkommen bei EquityLabs\nFülle dieses kurze Formular aus, um deine personalisierte KI-Erfahrung zu starten.",
+      objetivo: "Was ist dein Hauptziel mit EquityLabs?",
+      objetivo_opciones: [
+        "Meine persönliche Produktivität optimieren",
+        "Geschäftsprozesse automatisieren",
+        "Künstliche Intelligenz lernen",
+        "Ein Projekt von Grund auf erstellen",
+        "Andere (angeben)"
+      ],
+      situacion: "Was ist deine aktuelle Situation?",
+      situacion_opciones: [
+        "Student(in)",
+        "Unternehmer(in)",
+        "Freiberufler(in)",
+        "Ich habe ein Team oder Unternehmen",
+        "Auf der Suche nach Möglichkeiten"
+      ],
+      frecuencia: "Wie oft nutzt du digitale Tools zur Organisation?",
+      frecuencia_opciones: [
+        "Jeden Tag",
+        "Ein paar Mal pro Woche",
+        "Fast nie",
+        "Noch nie ausprobiert"
+      ],
+      experiencia: "Was ist dein Erfahrungslevel mit Künstlicher Intelligenz?",
+      experiencia_opciones: [
+        "Experte",
+        "Fortgeschritten",
+        "Anfänger",
+        "Noch nie ein KI-Tool benutzt"
+      ],
+      areas_interes: "Welche Bereiche möchtest du mit KI erkunden?",
+      areas_interes_opciones: [
+        "Automatisierung repetitiver Aufgaben",
+        "Marketing und soziale Medien",
+        "Persönliche oder geschäftliche Finanzen",
+        "Schreiben / kreative Inhalte",
+        "Bildung und Lernen",
+        "Andere (angeben)"
+      ],
+      boton_activar: "Meine personalisierte Erfahrung aktivieren"
+    }
   },
   zh: {
     console: {
@@ -399,6 +657,49 @@ export const translations = {
     footer: "EquityLabs Nano Console v1.0",
     hero: "在 EquityLabs，我们简化复杂，让您的未来非凡。",
     start: "开始",
+    onboarding: {
+      welcome: "🧠 欢迎来到 EquityLabs\n请填写此简短表格以启动您的个性化 AI 体验。",
+      objetivo: "您使用 EquityLabs 的主要目标是什么？",
+      objetivo_opciones: [
+        "优化我的个人生产力",
+        "自动化我的业务流程",
+        "学习使用人工智能",
+        "从头开始创建项目",
+        "其他（请说明）"
+      ],
+      situacion: "您目前的情况是什么？",
+      situacion_opciones: [
+        "学生",
+        "企业家",
+        "独立专业人士",
+        "我有团队或公司",
+        "寻找机会"
+      ],
+      frecuencia: "您多久使用数字工具来组织自己？",
+      frecuencia_opciones: [
+        "每天",
+        "每周几次",
+        "几乎从不",
+        "从未尝试过"
+      ],
+      experiencia: "您在人工智能方面的经验水平如何？",
+      experiencia_opciones: [
+        "专家",
+        "中级",
+        "初学者",
+        "从未使用过任何 AI 工具"
+      ],
+      areas_interes: "您有兴趣用 AI 探索哪些领域？",
+      areas_interes_opciones: [
+        "重复性任务自动化",
+        "营销和社交媒体",
+        "个人或企业财务",
+        "写作/创意内容",
+        "教育和学习",
+        "其他（请说明）"
+      ],
+      boton_activar: "激活我的个性化体验"
+    }
   },
 };
 
