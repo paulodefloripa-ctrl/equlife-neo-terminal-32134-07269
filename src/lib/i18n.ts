@@ -1,4 +1,4 @@
-export type Language = 'en' | 'es' | 'fr' | 'it' | 'pt';
+export type Language = 'en' | 'es' | 'fr' | 'it' | 'pt' | 'de' | 'zh';
 
 export const translations = {
   en: {
@@ -55,6 +55,8 @@ export const translations = {
       save: "Save Settings",
     },
     footer: "EquityLabs Nano Console v1.0",
+    hero: "At EquityLabs we simplify complexity so your future can be extraordinary.",
+    start: "Start",
   },
   es: {
     console: {
@@ -110,6 +112,8 @@ export const translations = {
       save: "Guardar Configuración",
     },
     footer: "EquityLabs Nano Console v1.0",
+    hero: "En EquityLabs simplificamos lo complejo para que tu futuro sea extraordinario.",
+    start: "Comenzar",
   },
   fr: {
     console: {
@@ -165,6 +169,8 @@ export const translations = {
       save: "Enregistrer les Paramètres",
     },
     footer: "EquityLabs Nano Console v1.0",
+    hero: "Chez EquityLabs, nous simplifions la complexité pour rendre votre avenir extraordinaire.",
+    start: "Commencer",
   },
   it: {
     console: {
@@ -220,6 +226,8 @@ export const translations = {
       save: "Salva Impostazioni",
     },
     footer: "EquityLabs Nano Console v1.0",
+    hero: "In EquityLabs semplifichiamo il complesso per rendere straordinario il tuo futuro.",
+    start: "Inizia",
   },
   pt: {
     console: {
@@ -275,6 +283,122 @@ export const translations = {
       save: "Salvar Configurações",
     },
     footer: "EquityLabs Nano Console v1.0",
+    hero: "Na EquityLabs simplificamos o complexo para que seu futuro seja extraordinário.",
+    start: "Começar",
+  },
+  de: {
+    console: {
+      welcome: "Wie kann ich Ihnen heute helfen?",
+      workstation: "Kommandozentrale",
+      inputPlaceholder: "Geben Sie einen Befehl oder eine Nachricht ein...",
+      help: "Geben Sie 'help' für verfügbare Befehle ein",
+    },
+    navigation: {
+      console: "Konsole",
+      projects: "Projekte",
+      agents: "Agenten",
+      settings: "Einstellungen",
+    },
+    actions: {
+      projects: "Projekte",
+      gmail: "Gmail",
+      pdf: "PDF",
+      pomodoro: "Pomodoro",
+      music: "Musik",
+      media: "Medien",
+    },
+    status: {
+      time: "Zeit",
+      date: "Datum",
+      location: "Standort",
+      focus: "FOKUS",
+      break: "PAUSE",
+    },
+    commands: {
+      help: "Verfügbare Befehle anzeigen",
+      time: "Aktuelle Uhrzeit anzeigen",
+      gps: "GPS-Standort anzeigen",
+      focus: "Fokus-Timer starten (25 Min.)",
+      break: "Pausen-Timer starten (5 Min.)",
+      stop: "Timer stoppen",
+      projects: "Projektliste anzeigen",
+    },
+    input: {
+      placeholder: "Wie kann ich Ihnen heute helfen?",
+      voiceStart: "Spracheingabe starten",
+      voiceStop: "Zuhören beenden",
+      speakStart: "Text vorlesen",
+      speakStop: "Vorlesen beenden",
+      uploadFile: "Datei hochladen",
+      send: "Senden",
+    },
+    voice: {
+      notSupported: "Spracherkennung in diesem Browser nicht unterstützt",
+      speechNotSupported: "Text-to-Speech in diesem Browser nicht unterstützt",
+    },
+    settings: {
+      save: "Einstellungen speichern",
+    },
+    footer: "EquityLabs Nano Console v1.0",
+    hero: "Bei EquityLabs vereinfachen wir das Komplizierte, damit Ihre Zukunft außergewöhnlich wird.",
+    start: "Starten",
+  },
+  zh: {
+    console: {
+      welcome: "今天我能帮您什么？",
+      workstation: "指挥工作站",
+      inputPlaceholder: "输入命令或消息...",
+      help: "输入 'help' 查看可用命令",
+    },
+    navigation: {
+      console: "控制台",
+      projects: "项目",
+      agents: "代理",
+      settings: "设置",
+    },
+    actions: {
+      projects: "项目",
+      gmail: "Gmail",
+      pdf: "PDF",
+      pomodoro: "番茄钟",
+      music: "音乐",
+      media: "媒体",
+    },
+    status: {
+      time: "时间",
+      date: "日期",
+      location: "位置",
+      focus: "专注",
+      break: "休息",
+    },
+    commands: {
+      help: "显示可用命令",
+      time: "显示当前时间",
+      gps: "显示GPS位置",
+      focus: "开始专注计时器（25分钟）",
+      break: "开始休息计时器（5分钟）",
+      stop: "停止计时器",
+      projects: "显示项目列表",
+    },
+    input: {
+      placeholder: "今天我能帮您什么？",
+      voiceStart: "开始语音输入",
+      voiceStop: "停止监听",
+      speakStart: "朗读文本",
+      speakStop: "停止朗读",
+      uploadFile: "上传文件",
+      send: "发送",
+    },
+    voice: {
+      notSupported: "此浏览器不支持语音识别",
+      speechNotSupported: "此浏览器不支持文本转语音",
+    },
+    settings: {
+      save: "保存设置",
+    },
+    footer: "EquityLabs Nano Console v1.0",
+    hero: "在 EquityLabs，我们简化复杂，让您的未来非凡。",
+    start: "开始",
   },
 };
 

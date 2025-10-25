@@ -13,6 +13,8 @@ const LanguageSwitcher = ({ language, onLanguageChange }: LanguageSwitcherProps)
     { id: 'fr', label: 'FR' },
     { id: 'it', label: 'IT' },
     { id: 'pt', label: 'PT' },
+    { id: 'de', label: 'DE' },
+    { id: 'zh', label: '中' },
   ];
 
   return (

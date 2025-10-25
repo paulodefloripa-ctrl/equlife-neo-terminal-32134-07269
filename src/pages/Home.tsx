@@ -3,12 +3,14 @@ import { useNavigate } from 'react-router-dom';
 import { Terminal, FolderKanban, Bot, Settings } from 'lucide-react';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
 import { useLanguage } from '@/hooks/useLanguage';
+import { getTranslation } from '@/lib/i18n';
 import { Button } from '@/components/ui/button';
 import HubNode from '@/components/HubNode';
 
 const Home = () => {
   const navigate = useNavigate();
   const { language, changeLanguage } = useLanguage();
+  const t = getTranslation(language);
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-background relative overflow-hidden">
@@ -29,7 +31,7 @@ const Home = () => {
           transition={{ delay: 0.3 }}
           className="text-4xl text-foreground font-sans max-w-3xl mx-auto"
         >
-          En EquityLabs simplificamos lo complejo para que tu futuro sea extraordinario.
+          {t.hero}
         </motion.p>
         
         {/* Navigation Nodes */}
@@ -57,7 +59,7 @@ const Home = () => {
             size="lg"
             className="text-xl px-12 py-6 font-sans bg-primary hover:bg-primary/90 text-primary-foreground transition-all"
           >
-            Comenzar
+            {t.start}
           </Button>
         </motion.div>
       </motion.div>
