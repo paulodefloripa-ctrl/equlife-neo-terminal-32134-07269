@@ -98,7 +98,11 @@ export const translations = {
         "Education and learning",
         "Other (specify)"
       ],
-      boton_activar: "Activate my personalized experience"
+      boton_activar: "Activate my personalized experience",
+      neo_intro_1: "I'm NEO, your personal AI assistant",
+      neo_intro_2: "I'm going to help you activate your personalized experience",
+      neo_intro_3: "Let's complete this form to adapt to your needs",
+      completion: "Perfect! Activating your personalized experience..."
     }
   },
   es: {
@@ -198,7 +202,11 @@ export const translations = {
         "Educación y aprendizaje",
         "Otro (especificar)"
       ],
-      boton_activar: "Activar mi experiencia personalizada"
+      boton_activar: "Activar mi experiencia personalizada",
+      neo_intro_1: "Soy NEO, tu asistente de IA personal",
+      neo_intro_2: "Voy a ayudarte a activar tu experiencia personalizada",
+      neo_intro_3: "Completemos este formulario para adaptarnos a tus necesidades",
+      completion: "Perfecto! Activando tu experiencia personalizada..."
     }
   },
   fr: {
@@ -298,7 +306,11 @@ export const translations = {
         "Éducation et apprentissage",
         "Autre (préciser)"
       ],
-      boton_activar: "Activer mon expérience personnalisée"
+      boton_activar: "Activer mon expérience personnalisée",
+      neo_intro_1: "Je suis NEO, votre assistant IA personnel",
+      neo_intro_2: "Je vais vous aider à activer votre expérience personnalisée",
+      neo_intro_3: "Complétons ce formulaire pour nous adapter à vos besoins",
+      completion: "Parfait! Activation de votre expérience personnalisée..."
     }
   },
   it: {
@@ -398,7 +410,11 @@ export const translations = {
         "Educazione e apprendimento",
         "Altro (specificare)"
       ],
-      boton_activar: "Attiva la mia esperienza personalizzata"
+      boton_activar: "Attiva la mia esperienza personalizzata",
+      neo_intro_1: "Sono NEO, il tuo assistente IA personale",
+      neo_intro_2: "Ti aiuterò ad attivare la tua esperienza personalizzata",
+      neo_intro_3: "Completiamo questo modulo per adattarci alle tue esigenze",
+      completion: "Perfetto! Attivazione della tua esperienza personalizzata..."
     }
   },
   pt: {
@@ -498,7 +514,11 @@ export const translations = {
         "Educação e aprendizagem",
         "Outro (especificar)"
       ],
-      boton_activar: "Ativar minha experiência personalizada"
+      boton_activar: "Ativar minha experiência personalizada",
+      neo_intro_1: "Sou NEO, seu assistente pessoal de IA",
+      neo_intro_2: "Vou ajudá-lo a ativar sua experiência personalizada",
+      neo_intro_3: "Vamos preencher este formulário para nos adaptarmos às suas necessidades",
+      completion: "Perfeito! Ativando sua experiência personalizada..."
     }
   },
   de: {
@@ -598,7 +618,11 @@ export const translations = {
         "Bildung und Lernen",
         "Andere (angeben)"
       ],
-      boton_activar: "Meine personalisierte Erfahrung aktivieren"
+      boton_activar: "Meine personalisierte Erfahrung aktivieren",
+      neo_intro_1: "Ich bin NEO, dein persönlicher KI-Assistent",
+      neo_intro_2: "Ich werde dir helfen, deine personalisierte Erfahrung zu aktivieren",
+      neo_intro_3: "Lass uns dieses Formular ausfüllen, um uns an deine Bedürfnisse anzupassen",
+      completion: "Perfekt! Aktivierung deiner personalisierten Erfahrung..."
     }
   },
   zh: {
@@ -698,7 +722,11 @@ export const translations = {
         "教育和学习",
         "其他（请说明）"
       ],
-      boton_activar: "激活我的个性化体验"
+      boton_activar: "激活我的个性化体验",
+      neo_intro_1: "我是 NEO，您的个人 AI 助手",
+      neo_intro_2: "我将帮助您启动个性化体验",
+      neo_intro_3: "让我们完成此表格以适应您的需求",
+      completion: "完美！正在启动您的个性化体验..."
     }
   },
 };
