@@ -70,3 +70,36 @@ export interface Command {
   description: string;
   handler: (args?: string) => void;
 }
+
+export interface ClientProfile {
+  nombre: string;
+  rango_edad: string;
+  ciudad: string;
+  rol_principal: string;
+  tamano_equipo: string;
+  objetivo_inmediato: string;
+  desafio_mayor: string;
+  nivel_tecnico: string;
+  herramientas_vitales: string;
+  tools_detected: string[];
+  completed_at: string;
+  language: string;
+}
+
+export interface FREState {
+  hasCompletedFRE: boolean;
+  skipOnboarding: boolean;
+  profile: ClientProfile | null;
+  currentStep: number;
+  pivotExit: boolean;
+}
+
+export interface IntegrationCard {
+  id: string;
+  name: string;
+  icon: string;
+  description: string;
+  status: 'not_connected' | 'connected' | 'recommended';
+  oauth_url?: string;
+  docs_url: string;
+}

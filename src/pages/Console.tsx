@@ -1,3 +1,5 @@
+import { useFRE } from '@/hooks/useFRE';
+import { FRETerminal } from '@/components/FRETerminal';
 import Layout from '@/components/Layout';
 import ConsoleTerminal from '@/components/ConsoleTerminal';
 import StatusBar from '@/components/StatusBar';
@@ -11,6 +13,7 @@ import { useLanguage } from '@/hooks/useLanguage';
 import { getTranslation } from '@/lib/i18n';
 
 const Console = () => {
+  const { hasCompletedFRE } = useFRE();
   const { state: pomodoro, startFocus, startBreak, stop } = usePomodoro();
   const { gps, requestLocation } = useGPS();
   const { language } = useLanguage();
@@ -107,6 +110,17 @@ const Console = () => {
       handleExecute(cmd, args);
     }
   };
+
+  // Show FRE if not completed
+  if (!hasCompletedFRE) {
+    return (
+      <Layout menuDisabled={true}>
+        <div className="max-w-6xl mx-auto px-4 py-8">
+          <FRETerminal />
+        </div>
+      </Layout>
+    );
+  }
 
   return (
     <Layout>
