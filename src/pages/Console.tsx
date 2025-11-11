@@ -3,8 +3,8 @@ import { FRETerminal } from '@/components/FRETerminal';
 import Layout from '@/components/Layout';
 import ConsoleTerminal from '@/components/ConsoleTerminal';
 import StatusBar from '@/components/StatusBar';
-import QuickActionButtons from '@/components/QuickActionButtons';
 import EnhancedInput from '@/components/EnhancedInput';
+import SpaceAnimation from '@/components/SpaceAnimation';
 import { usePomodoro } from '@/hooks/usePomodoro';
 import { useGPS } from '@/hooks/useGPS';
 import { ConsoleCommand } from '@/lib/types';
@@ -124,21 +124,23 @@ const Console = () => {
 
   return (
     <Layout>
-      <div className="max-w-6xl mx-auto p-4 flex flex-col h-[calc(100vh-8rem)]">
-        <div className="mb-2">
-          <QuickActionButtons />
-        </div>
+      <div className="relative w-full h-[calc(100vh-4rem)] overflow-hidden">
+        {/* Space animation background */}
+        <SpaceAnimation className="absolute inset-0 -z-10" />
         
-        <div className="mb-4">
-          <StatusBar pomodoro={pomodoro} gps={gps} />
-        </div>
-        
-        <div className="flex-1 rounded-2xl border border-border overflow-hidden shadow-2xl bg-card flex flex-col">
-          <ConsoleTerminal commands={commands} onExecute={handleExecute} />
-        </div>
+        {/* Content */}
+        <div className="relative z-10 max-w-6xl mx-auto p-4 flex flex-col h-full">
+          <div className="mb-4">
+            <StatusBar pomodoro={pomodoro} gps={gps} />
+          </div>
+          
+          <div className="flex-1 rounded-2xl border border-border overflow-hidden shadow-2xl bg-card/80 backdrop-blur-sm flex flex-col">
+            <ConsoleTerminal commands={commands} onExecute={handleExecute} />
+          </div>
 
-        <div className="mt-4">
-          <EnhancedInput onSubmit={handleEnhancedInput} />
+          <div className="mt-4">
+            <EnhancedInput onSubmit={handleEnhancedInput} />
+          </div>
         </div>
       </div>
     </Layout>

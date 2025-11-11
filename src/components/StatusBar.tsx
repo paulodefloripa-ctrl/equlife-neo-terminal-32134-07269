@@ -1,8 +1,12 @@
 import { useEffect, useState } from 'react';
 import { PomodoroState, GPSData } from '@/lib/types';
-import { Clock, MapPin, Timer, Calendar } from 'lucide-react';
+import { Clock, MapPin, Timer, Calendar, Volume2, VolumeX, Cloud } from 'lucide-react';
 import { useLanguage } from '@/hooks/useLanguage';
 import { getTranslation } from '@/lib/i18n';
+import { useWeather } from '@/hooks/useWeather';
+import { useAudioControl } from '@/hooks/useAudioControl';
+import { Button } from './ui/button';
+import ToolDock from './ToolDock';
 
 type StatusBarProps = {
   pomodoro: PomodoroState;
@@ -13,6 +17,8 @@ const StatusBar = ({ pomodoro, gps }: StatusBarProps) => {
   const [time, setTime] = useState(new Date());
   const { language } = useLanguage();
   const t = getTranslation(language);
+  const weather = useWeather(gps.latitude, gps.longitude);
+  const { isMuted, toggleMute } = useAudioControl();
 
   useEffect(() => {
     const interval = setInterval(() => setTime(new Date()), 1000);
@@ -42,32 +48,56 @@ const StatusBar = ({ pomodoro, gps }: StatusBarProps) => {
   };
 
   return (
-    <div className="flex items-center gap-6 text-sm font-mono text-muted-foreground">
-      <div className="flex items-center gap-2">
-        <Clock size={14} />
-        <span>{formatTime(time)}</span>
+    <div className="flex items-center justify-between w-full text-sm font-mono text-muted-foreground">
+      <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2">
+          <Clock size={14} />
+          <span>{formatTime(time)}</span>
+        </div>
+
+        <div className="flex items-center gap-2">
+          <Calendar size={14} />
+          <span>{formatDate(time)}</span>
+        </div>
+
+        {gps.authorized && (
+          <div className="flex items-center gap-2">
+            <MapPin size={14} />
+            <span>{gps.city || `${gps.latitude?.toFixed(2)}, ${gps.longitude?.toFixed(2)}`}</span>
+          </div>
+        )}
+
+        {weather.temperature !== null && !weather.loading && (
+          <div className="flex items-center gap-2">
+            <Cloud size={14} />
+            <span>
+              {weather.icon} {weather.temperature}°C
+            </span>
+          </div>
+        )}
+
+        {pomodoro.isRunning && (
+          <div className="flex items-center gap-2">
+            <Timer size={14} className="text-accent" />
+            <span className="text-accent">
+              {pomodoro.mode === 'focus' ? t.status.focus : t.status.break}: {formatPomodoro(pomodoro.remainingSeconds)}
+            </span>
+          </div>
+        )}
       </div>
 
       <div className="flex items-center gap-2">
-        <Calendar size={14} />
-        <span>{formatDate(time)}</span>
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={toggleMute}
+          aria-label={isMuted ? 'Unmute' : 'Mute'}
+        >
+          {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
+        </Button>
+        
+        <ToolDock />
       </div>
-
-      {gps.authorized && (
-        <div className="flex items-center gap-2">
-          <MapPin size={14} />
-          <span>{gps.city || `${gps.latitude?.toFixed(2)}, ${gps.longitude?.toFixed(2)}`}</span>
-        </div>
-      )}
-
-      {pomodoro.isRunning && (
-        <div className="flex items-center gap-2">
-          <Timer size={14} className="text-accent" />
-          <span className="text-accent">
-            {pomodoro.mode === 'focus' ? t.status.focus : t.status.break}: {formatPomodoro(pomodoro.remainingSeconds)}
-          </span>
-        </div>
-      )}
     </div>
   );
 };
