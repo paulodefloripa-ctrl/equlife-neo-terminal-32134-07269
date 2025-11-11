@@ -12,7 +12,6 @@ const detectBrowserLanguage = (): Language => {
   if (browserLang.startsWith('it')) return 'it';
   if (browserLang.startsWith('fr')) return 'fr';
   if (browserLang.startsWith('de')) return 'de';
-  if (browserLang.startsWith('zh')) return 'zh';
   
   return 'en'; // default fallback
 };
@@ -22,7 +21,7 @@ export const useLanguage = () => {
 
   useEffect(() => {
     const saved = localStorage.getItem(LANGUAGE_KEY) as Language;
-    if (saved && ['en', 'es', 'fr', 'it', 'pt', 'de', 'zh'].includes(saved)) {
+    if (saved && ['en', 'es', 'fr', 'it', 'pt', 'de'].includes(saved)) {
       setLanguage(saved);
     } else {
       const detected = detectBrowserLanguage();

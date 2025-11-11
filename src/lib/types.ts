@@ -1,6 +1,6 @@
 export type UIMode = 'console' | 'glass';
 export type Theme = 'normal' | 'cyberpunk';
-export type Language = 'en' | 'es' | 'fr' | 'it' | 'pt' | 'de' | 'zh';
+export type Language = 'en' | 'es' | 'fr' | 'it' | 'pt' | 'de';
 
 export type Project = {
   id: string;
