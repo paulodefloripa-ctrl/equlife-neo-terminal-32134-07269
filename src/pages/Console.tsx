@@ -1,10 +1,10 @@
 import { useFRE } from '@/hooks/useFRE';
 import { FRETerminal } from '@/components/FRETerminal';
 import Layout from '@/components/Layout';
-import ConsoleTerminal from '@/components/ConsoleTerminal';
 import StatusBar from '@/components/StatusBar';
 import EnhancedInput from '@/components/EnhancedInput';
 import SpaceAnimation from '@/components/SpaceAnimation';
+import { motion } from 'framer-motion';
 import { usePomodoro } from '@/hooks/usePomodoro';
 import { useGPS } from '@/hooks/useGPS';
 import { ConsoleCommand } from '@/lib/types';
@@ -134,12 +134,21 @@ const Console = () => {
             <StatusBar pomodoro={pomodoro} gps={gps} />
           </div>
           
-          <div className="flex-1 rounded-2xl border border-border overflow-hidden shadow-2xl bg-card/80 backdrop-blur-sm flex flex-col">
-            <ConsoleTerminal commands={commands} onExecute={handleExecute} />
-          </div>
-
-          <div className="mt-4">
-            <EnhancedInput onSubmit={handleEnhancedInput} />
+          {/* Centered welcome message and input */}
+          <div className="flex-1 flex flex-col items-center justify-center">
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1 }}
+              className="text-2xl text-foreground mb-8 font-mono"
+            >
+              {t.welcomeMessage}
+              <span className="text-primary animate-pulse ml-1">▌</span>
+            </motion.p>
+            
+            <div className="w-full max-w-2xl">
+              <EnhancedInput onSubmit={handleEnhancedInput} />
+            </div>
           </div>
         </div>
       </div>

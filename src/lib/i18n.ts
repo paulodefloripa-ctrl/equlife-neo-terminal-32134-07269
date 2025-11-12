@@ -57,6 +57,7 @@ export const translations = {
     footer: "EquityLabs Nano Console v1.0",
     hero: "At EquityLabs we simplify complexity so your future can be extraordinary.",
     start: "Start",
+    welcomeMessage: "How can I help you today?",
     onboarding: {
       welcome: "🧠 Welcome to EquityLabs\nFill out this short form to activate your personalized AI experience.",
       objetivo: "What is your main goal with EquityLabs?",
@@ -198,6 +199,7 @@ export const translations = {
     footer: "EquityLabs Nano Console v1.0",
     hero: "En EquityLabs simplificamos lo complejo para que tu futuro sea extraordinario.",
     start: "Comenzar",
+    welcomeMessage: "¿Cómo puedo ayudarte hoy?",
     onboarding: {
       welcome: "🧠 Bienvenido a EquityLabs\nCompletá este breve formulario para activar tu experiencia personalizada con IA.",
       objetivo: "¿Cuál es tu principal objetivo con EquityLabs?",
@@ -339,6 +341,7 @@ export const translations = {
     footer: "EquityLabs Nano Console v1.0",
     hero: "Chez EquityLabs, nous simplifions la complexité pour rendre votre avenir extraordinaire.",
     start: "Commencer",
+    welcomeMessage: "Comment puis-je vous aider aujourd'hui?",
     onboarding: {
       welcome: "🧠 Bienvenue chez EquityLabs\nRemplissez ce court formulaire pour activer votre expérience personnalisée avec l'IA.",
       objetivo: "Quel est votre objectif principal avec EquityLabs?",
@@ -480,6 +483,7 @@ export const translations = {
     footer: "EquityLabs Nano Console v1.0",
     hero: "In EquityLabs semplifichiamo il complesso per rendere straordinario il tuo futuro.",
     start: "Inizia",
+    welcomeMessage: "Come posso aiutarti oggi?",
     onboarding: {
       welcome: "🧠 Benvenuto in EquityLabs\nCompila questo breve modulo per attivare la tua esperienza personalizzata con l'IA.",
       objetivo: "Qual è il tuo obiettivo principale con EquityLabs?",
@@ -621,6 +625,7 @@ export const translations = {
     footer: "EquityLabs Nano Console v1.0",
     hero: "Na EquityLabs simplificamos o complexo para que seu futuro seja extraordinário.",
     start: "Começar",
+    welcomeMessage: "Como posso ajudá-lo hoje?",
     onboarding: {
       welcome: "🧠 Bem-vindo ao EquityLabs\nPreencha este breve formulário para ativar sua experiência personalizada com IA.",
       objetivo: "Qual é seu principal objetivo com EquityLabs?",
@@ -762,6 +767,7 @@ export const translations = {
     footer: "EquityLabs Nano Console v1.0",
     hero: "Bei EquityLabs vereinfachen wir das Komplizierte, damit Ihre Zukunft außergewöhnlich wird.",
     start: "Starten",
+    welcomeMessage: "Wie kann ich Ihnen heute helfen?",
     onboarding: {
       welcome: "🧠 Willkommen bei EquityLabs\nFülle dieses kurze Formular aus, um deine personalisierte KI-Erfahrung zu starten.",
       objetivo: "Was ist dein Hauptziel mit EquityLabs?",

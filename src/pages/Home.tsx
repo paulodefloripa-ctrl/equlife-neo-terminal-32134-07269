@@ -2,7 +2,9 @@ import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import { Terminal, FolderKanban, Bot, Settings } from 'lucide-react';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
+import ThemeSwitcher from '@/components/ThemeSwitcher';
 import { useLanguage } from '@/hooks/useLanguage';
+import { useTheme } from '@/hooks/useTheme';
 import { getTranslation } from '@/lib/i18n';
 import { Button } from '@/components/ui/button';
 import HubNode from '@/components/HubNode';
@@ -10,11 +12,13 @@ import HubNode from '@/components/HubNode';
 const Home = () => {
   const navigate = useNavigate();
   const { language, changeLanguage } = useLanguage();
+  const { theme, changeTheme } = useTheme();
   const t = getTranslation(language);
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-background relative overflow-hidden">
-      <div className="absolute top-4 right-4 z-50">
+      <div className="absolute top-4 right-4 z-50 flex gap-3">
+        <ThemeSwitcher theme={theme} onThemeChange={changeTheme} />
         <LanguageSwitcher language={language} onLanguageChange={changeLanguage} />
       </div>
 
