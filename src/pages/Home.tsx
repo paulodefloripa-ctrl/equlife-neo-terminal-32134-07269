@@ -55,7 +55,16 @@ const Home = () => {
           className="space-y-4"
         >
           <Button
-            onClick={() => navigate('/onboarding')}
+            onClick={() => {
+              localStorage.setItem('eql-fre-state', JSON.stringify({
+                hasCompletedFRE: true,
+                skipOnboarding: true,
+                profile: null,
+                currentStep: 0,
+                pivotExit: false,
+              }));
+              navigate('/console');
+            }}
             size="lg"
             className="text-xl px-12 py-6 font-sans bg-primary hover:bg-primary/90 text-primary-foreground transition-all"
           >

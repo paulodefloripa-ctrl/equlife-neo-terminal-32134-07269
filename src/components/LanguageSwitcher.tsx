@@ -1,5 +1,12 @@
-import { Globe } from 'lucide-react';
+import { Globe, ChevronDown } from 'lucide-react';
 import { Language } from '@/lib/types';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
+import { Button } from '@/components/ui/button';
 
 type LanguageSwitcherProps = {
   language: Language;
@@ -17,22 +24,28 @@ const LanguageSwitcher = ({ language, onLanguageChange }: LanguageSwitcherProps)
   ];
 
   return (
-    <div className="flex gap-1 rounded-lg bg-background/50 border border-border p-1">
-      <Globe size={14} className="text-muted-foreground my-auto ml-2" />
-      {languages.map(lang => (
-        <button
-          key={lang.id}
-          onClick={() => onLanguageChange(lang.id)}
-          className={`px-3 py-1.5 rounded font-mono text-xs transition-all ${
-            language === lang.id
-              ? 'bg-primary text-primary-foreground'
-              : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
-          }`}
-        >
-          {lang.label}
-        </button>
-      ))}
-    </div>
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button variant="ghost" size="sm" className="gap-1.5 font-mono text-xs">
+          <Globe className="w-4 h-4" />
+          <span>{language.toUpperCase()}</span>
+          <ChevronDown className="w-3 h-3" />
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="end" className="bg-popover">
+        {languages.map(lang => (
+          <DropdownMenuItem 
+            key={lang.id}
+            onClick={() => onLanguageChange(lang.id)}
+            className={`font-mono text-xs cursor-pointer ${
+              language === lang.id ? 'bg-primary/10 text-primary' : ''
+            }`}
+          >
+            {lang.label}
+          </DropdownMenuItem>
+        ))}
+      </DropdownMenuContent>
+    </DropdownMenu>
   );
 };
 
