@@ -21,7 +21,51 @@ const Projects = () => {
 
   useEffect(() => {
     loadProjects();
+    initializeExampleProjects();
   }, []);
+
+  const initializeExampleProjects = async () => {
+    try {
+      const existingProjects = await listProjects();
+      if (existingProjects.length === 0) {
+        // Add 3 example projects
+        const examples = [
+          {
+            name: 'Organización Tareas Domésticas',
+            agent: 'Neo',
+            status: 'EN_CURSO' as const,
+            progress_percent: 30,
+            capital_invested: 0,
+            time_estimated_days: 7,
+          },
+          {
+            name: 'Proyecto Creativo: App Musical',
+            agent: 'Neo',
+            status: 'EN_CURSO' as const,
+            progress_percent: 15,
+            capital_invested: 2500,
+            time_estimated_days: 45,
+          },
+          {
+            name: 'Startup: Plataforma E-learning',
+            agent: 'Neo',
+            status: 'EN_CURSO' as const,
+            progress_percent: 60,
+            capital_invested: 15000,
+            time_estimated_days: 90,
+          },
+        ];
+
+        for (const example of examples) {
+          await createProject(example);
+        }
+        
+        loadProjects();
+      }
+    } catch (e: any) {
+      console.error('Failed to initialize example projects:', e);
+    }
+  };
 
   const loadProjects = async () => {
     try {

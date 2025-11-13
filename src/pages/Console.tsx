@@ -1,16 +1,26 @@
+import { useState } from 'react';
 import { useFRE } from '@/hooks/useFRE';
 import { FRETerminal } from '@/components/FRETerminal';
 import Layout from '@/components/Layout';
 import StatusBar from '@/components/StatusBar';
 import EnhancedInput from '@/components/EnhancedInput';
 import SpaceAnimation from '@/components/SpaceAnimation';
-import { motion } from 'framer-motion';
 import { usePomodoro } from '@/hooks/usePomodoro';
 import { useGPS } from '@/hooks/useGPS';
 import { ConsoleCommand } from '@/lib/types';
 import { listProjects } from '@/lib/projectsRepo';
 import { useLanguage } from '@/hooks/useLanguage';
 import { getTranslation } from '@/lib/i18n';
+import { Volume2 } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { useVoice } from '@/hooks/useVoice';
+
+interface ChatMessage {
+  id: string;
+  type: 'user' | 'agent' | 'system';
+  content: string;
+  timestamp: Date;
+}
 
 const Console = () => {
   const { hasCompletedFRE } = useFRE();
@@ -18,11 +28,17 @@ const Console = () => {
   const { gps, requestLocation } = useGPS();
   const { language } = useLanguage();
   const t = getTranslation(language);
+  const [messages, setMessages] = useState<ChatMessage[]>([]);
+  const { speak } = useVoice();
 
-  const addMessage = (type: 'agent' | 'system', content: string) => {
-    if ((window as any).__addConsoleMessage) {
-      (window as any).__addConsoleMessage(type, content);
-    }
+  const addMessage = (type: 'agent' | 'system' | 'user', content: string) => {
+    const newMessage: ChatMessage = {
+      id: Date.now().toString() + Math.random(),
+      type,
+      content,
+      timestamp: new Date(),
+    };
+    setMessages(prev => [...prev, newMessage]);
   };
 
   const commands: ConsoleCommand[] = [
@@ -101,13 +117,24 @@ const Console = () => {
   };
 
   const handleEnhancedInput = (text: string, file?: File) => {
+    if (text) {
+      addMessage('user', text);
+      
+      // Check if it's a command (starts with /)
+      if (text.startsWith('/')) {
+        const [cmd, ...argsParts] = text.slice(1).trim().split(' ');
+        const args = argsParts.join(' ');
+        handleExecute(cmd, args);
+      } else {
+        // Regular message - echo for now
+        setTimeout(() => {
+          addMessage('agent', `Echo: ${text}`);
+        }, 500);
+      }
+    }
+    
     if (file) {
       addMessage('system', `File received: ${file.name}`);
-    }
-    if (text) {
-      const [cmd, ...argsParts] = text.trim().split(' ');
-      const args = argsParts.join(' ');
-      handleExecute(cmd, args);
     }
   };
 
@@ -134,21 +161,53 @@ const Console = () => {
             <StatusBar pomodoro={pomodoro} gps={gps} />
           </div>
           
-          {/* Centered welcome message and input */}
-          <div className="flex-1 flex flex-col items-center justify-center">
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 1 }}
-              className="text-2xl text-foreground mb-8 font-mono"
-            >
-              {t.welcomeMessage}
-              <span className="text-primary animate-pulse ml-1">▌</span>
-            </motion.p>
-            
-            <div className="w-full max-w-2xl">
-              <EnhancedInput onSubmit={handleEnhancedInput} />
-            </div>
+          {/* Chat History */}
+          <div className="flex-1 overflow-y-auto mb-4">
+            {messages.length === 0 ? (
+              <div className="h-full flex items-center justify-center">
+                <p className="text-muted-foreground font-mono text-sm opacity-60">
+                  {t.welcomeMessage}
+                </p>
+              </div>
+            ) : (
+              <div className="space-y-3 max-w-4xl mx-auto">
+                {messages.map((msg) => (
+                  <div
+                    key={msg.id}
+                    className={`flex ${msg.type === 'user' ? 'justify-end' : 'justify-start'}`}
+                  >
+                    <div
+                      className={`max-w-[80%] px-4 py-2 rounded-lg ${
+                        msg.type === 'user'
+                          ? 'bg-primary/20 text-foreground border border-primary/30'
+                          : msg.type === 'agent'
+                          ? 'bg-muted/80 text-foreground backdrop-blur-sm'
+                          : 'bg-card/80 text-muted-foreground backdrop-blur-sm'
+                      }`}
+                    >
+                      <div className="flex items-start gap-2">
+                        <span className="font-mono text-sm whitespace-pre-wrap">{msg.content}</span>
+                        {msg.type === 'agent' && (
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            className="h-6 px-2 shrink-0"
+                            onClick={() => speak(msg.content)}
+                          >
+                            <Volume2 className="w-3 h-3" />
+                          </Button>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+          
+          {/* Input Area */}
+          <div className="w-full max-w-2xl mx-auto">
+            <EnhancedInput onSubmit={handleEnhancedInput} />
           </div>
         </div>
       </div>
