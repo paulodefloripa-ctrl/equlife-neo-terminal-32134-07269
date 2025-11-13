@@ -3,6 +3,13 @@ import Layout from '@/components/Layout';
 import { Project } from '@/lib/types';
 import { listProjects, createProject, updateProject } from '@/lib/projectsRepo';
 import { Plus, RefreshCw } from 'lucide-react';
+import { z } from 'zod';
+import { useToast } from '@/hooks/use-toast';
+
+const projectSchema = z.object({
+  name: z.string().trim().min(1, 'Project name is required').max(100, 'Project name must be less than 100 characters'),
+  agent: z.string().trim().min(1, 'Agent is required').max(50, 'Agent name must be less than 50 characters'),
+});
 
 const Projects = () => {
   const [projects, setProjects] = useState<Project[]>([]);
@@ -10,6 +17,7 @@ const Projects = () => {
   const [search, setSearch] = useState('');
   const [showModal, setShowModal] = useState(false);
   const [newProject, setNewProject] = useState({ name: '', agent: 'Neo' });
+  const { toast } = useToast();
 
   useEffect(() => {
     loadProjects();
@@ -25,10 +33,22 @@ const Projects = () => {
   };
 
   const handleCreate = async () => {
+    // Validate input
+    const result = projectSchema.safeParse(newProject);
+    if (!result.success) {
+      const firstError = result.error.errors[0];
+      toast({
+        title: 'Validation Error',
+        description: firstError.message,
+        variant: 'destructive',
+      });
+      return;
+    }
+
     try {
       await createProject({
-        name: newProject.name,
-        agent: newProject.agent,
+        name: result.data.name,
+        agent: result.data.agent,
         status: 'EN_CURSO',
         progress_percent: 0,
       });
@@ -37,6 +57,11 @@ const Projects = () => {
       loadProjects();
     } catch (e: any) {
       console.error('Failed to create project:', e);
+      toast({
+        title: 'Error',
+        description: 'Failed to create project',
+        variant: 'destructive',
+      });
     }
   };
 

@@ -6,6 +6,8 @@ import { ConversationMessage, QuickAction } from '@/lib/types';
 import { useTypingEffect } from '@/hooks/useTypingEffect';
 import { useVoice } from '@/hooks/useVoice';
 import { motion, AnimatePresence } from 'framer-motion';
+import { z } from 'zod';
+import { useToast } from '@/hooks/use-toast';
 
 interface NeoConsoleProps {
   messages: ConversationMessage[];
@@ -69,10 +71,13 @@ const MessageLine = ({ message, voiceEnabled, onSpeak }: {
   );
 };
 
+const messageSchema = z.string().trim().min(1, 'Message cannot be empty').max(5000, 'Message is too long');
+
 const NeoConsole = ({ messages, onSendMessage, onQuickAction, voiceEnabled }: NeoConsoleProps) => {
   const [input, setInput] = useState('');
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const { speak, stopSpeaking, isSpeaking, startListening, stopListening, isListening, transcript, clearTranscript } = useVoice();
+  const { toast } = useToast();
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -87,10 +92,20 @@ const NeoConsole = ({ messages, onSendMessage, onQuickAction, voiceEnabled }: Ne
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (input.trim()) {
-      onSendMessage(input.trim());
-      setInput('');
+    
+    // Validate input
+    const result = messageSchema.safeParse(input);
+    if (!result.success) {
+      toast({
+        title: 'Invalid message',
+        description: result.error.errors[0].message,
+        variant: 'destructive',
+      });
+      return;
     }
+    
+    onSendMessage(result.data);
+    setInput('');
   };
 
   const handleVoiceToggle = () => {

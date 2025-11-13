@@ -5,6 +5,7 @@ import { useVoice } from '@/hooks/useVoice';
 import { useToast } from '@/hooks/use-toast';
 import { useLanguage } from '@/hooks/useLanguage';
 import { getTranslation } from '@/lib/i18n';
+import { z } from 'zod';
 
 interface EnhancedInputProps {
   onSubmit: (text: string, file?: File) => void;
@@ -81,6 +82,20 @@ const EnhancedInput = ({ onSubmit, placeholder }: EnhancedInputProps) => {
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
+      // Validate file size (10MB limit)
+      const maxSize = 10 * 1024 * 1024;
+      if (file.size > maxSize) {
+        toast({
+          title: 'File too large',
+          description: 'Maximum file size is 10MB',
+          variant: 'destructive',
+        });
+        if (fileInputRef.current) {
+          fileInputRef.current.value = '';
+        }
+        return;
+      }
+
       setSelectedFile(file);
       toast({
         title: 'File selected',
@@ -146,7 +161,7 @@ const EnhancedInput = ({ onSubmit, placeholder }: EnhancedInputProps) => {
         type="file"
         onChange={handleFileChange}
         className="hidden"
-        accept="*/*"
+        accept=".pdf,.doc,.docx,.txt,.png,.jpg,.jpeg,.gif,.webp,.csv,.json,.xml"
       />
 
       <Button type="submit" size="sm" className="font-mono">

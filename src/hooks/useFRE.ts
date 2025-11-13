@@ -2,8 +2,12 @@ import { useState, useEffect } from 'react';
 import { FREState, ClientProfile } from '@/lib/types';
 import { detectTools } from '@/lib/toolDetector';
 import { useLanguage } from './useLanguage';
+import { z } from 'zod';
 
 const FRE_KEY = 'eql-fre-state';
+
+// Validation schema for profile fields
+const profileFieldSchema = z.string().trim().max(500, 'Input is too long (max 500 characters)');
 
 const defaultFREState: FREState = {
   hasCompletedFRE: false,
@@ -67,6 +71,15 @@ export const useFRE = () => {
 
   const saveAnswer = (field: keyof ClientProfile, value: string) => {
     if (!freState.profile) return;
+    
+    // Validate input (skip validation for non-string fields)
+    if (typeof value === 'string') {
+      const result = profileFieldSchema.safeParse(value);
+      if (!result.success) {
+        console.warn('Invalid profile field value:', result.error.errors[0].message);
+        return;
+      }
+    }
     
     const updatedProfile = {
       ...freState.profile,
